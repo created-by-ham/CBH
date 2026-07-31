@@ -1,0 +1,127 @@
+---
+layout: null
+nav: contact
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Created By Ham LLC</title>
+<meta name="description" content="Get a quote for custom woodworking or an original oil painting from Created By Ham LLC, based in Godley, TX.">
+<link rel="icon" href="/images/logo.png">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+{% include header.html %}
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1>Let&rsquo;s Create Something Together</h1>
+    <p>Tell me about your project and I&rsquo;ll get back to you with a quote.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="contact-layout">
+
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <div class="info-line">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <strong>Call or Text</strong>
+            <span><a href="tel:+15551234567">(555) 123-4567</a></span>
+          </div>
+        </div>
+        <div class="info-line">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>
+          </div>
+          <div>
+            <strong>Email</strong>
+            <span><a href="mailto:info@createdbyham.com">info@createdbyham.com</a></span>
+          </div>
+        </div>
+        <div class="info-line">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <strong>Location</strong>
+            <span>Godley, TX &mdash; serving Johnson County &amp; the greater DFW area</span>
+          </div>
+        </div>
+        <div class="info-line">
+          <div class="ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <strong>Response Time</strong>
+            <span>I typically reply within 1&ndash;2 business days.</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/info@createdbyham.com" method="POST" novalidate>
+        <!-- FormSubmit config: swap the email above, then keep these hidden fields as-is -->
+        <input type="hidden" name="_subject" value="New inquiry from createdbyham.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="field">
+          <label for="projectType">Project Type</label>
+          <select id="projectType" name="projectType">
+            <option value="Oil Painting">Oil Painting</option>
+            <option value="Custom Woodworking">Custom Woodworking</option>
+            <option value="Home Decor & Gifts">Home Decor &amp; Gifts</option>
+            <option value="Custom Idea / Other">Custom Idea / Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Tell Me About Your Project</label>
+          <textarea id="message" name="message" required placeholder="Sizes, colors, inspiration photos, timeline — whatever you've got."></textarea>
+        </div>
+        <div class="consent-line">
+          <input type="checkbox" id="smsConsent" name="smsConsent">
+          <label for="smsConsent">I agree to receive calls and text messages from Created By Ham LLC about my inquiry. Message and data rates may apply. Message frequency varies. Reply STOP to opt out at any time.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        <p class="form-status" role="status"></p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% include footer.html %}
+
+<script src="/js/script.js"></script>
+</body>
+</html>
