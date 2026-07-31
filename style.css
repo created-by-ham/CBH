@@ -175,11 +175,11 @@ p.lead {
 }
 
 .brand img {
-  height: 56px;
-  width: 56px;
+  height: 88px;
+  width: 88px;
   background: var(--cream);
   border-radius: 50%;
-  padding: 4px;
+  padding: 5px;
 }
 
 .brand-name {
