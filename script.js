@@ -1,106 +1,125 @@
----
-layout: null
-nav: gallery
----
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery | Created By Ham LLC</title>
-<meta name="description" content="Browse finished oil paintings and custom woodworking pieces built by Created By Ham LLC in Fort Worth, TX.">
-<link rel="icon" href="logo.png">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+// ============================================
+// CREATED BY HAM — site scripts
+// ============================================
 
-{% include header.html %}
+document.addEventListener('DOMContentLoaded', function () {
 
-<section class="page-hero">
-  <div class="wrap">
-    <p class="eyebrow">Gallery</p>
-    <h1>Every Piece Made By Hand</h1>
-    <p>A look at recent oil paintings and woodworking builds from the shop.</p>
-  </div>
-</section>
+  /* ---- Mobile nav toggle ---- */
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+  }
 
-<section class="section">
-  <div class="wrap">
-    <div class="filter-row">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="painting">Oil Paintings</button>
-      <button class="filter-btn" data-filter="wood">Woodworking</button>
-      <button class="filter-btn" data-filter="decor">Home Decor</button>
-    </div>
+  /* ---- Gallery filter (gallery.html) ---- */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var galleryItems = document.querySelectorAll('.masonry-grid figure');
+  if (filterBtns.length && galleryItems.length) {
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var cat = btn.getAttribute('data-filter');
+        galleryItems.forEach(function (item) {
+          var show = cat === 'all' || item.getAttribute('data-category') === cat;
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
 
-    <div class="masonry-grid">
-      <figure data-category="painting">
-        <img src="paint_1.jpg" alt="Original oil painting of a golf course pond surrounded by trees">
-        <figcaption>Golf Course Pond</figcaption>
-      </figure>
-      <figure data-category="decor">
-        <img src="work_1.jpg" alt="Laser-engraved wood plaque with fishing scene and Texas flag, Happy Father's Day 2026">
-        <figcaption>Father&rsquo;s Day Engraved Plaque</figcaption>
-      </figure>
-      <figure data-category="painting">
-        <img src="paint_2.jpg" alt="Framed oil painting of a sunset over a river with a rustic cabin">
-        <figcaption>Cabin Sunset</figcaption>
-      </figure>
-      <figure data-category="wood">
-        <img src="work_2.jpg" alt="Checkerboard-pattern wood clipboard in walnut and maple">
-        <figcaption>Checkerboard Clipboard</figcaption>
-      </figure>
-      <figure data-category="decor">
-        <img src="work_3.jpg" alt="Open wood humidor box personalized with a Merry Christmas 2025 engraving">
-        <figcaption>Custom Humidor</figcaption>
-      </figure>
-      <figure data-category="painting">
-        <img src="paint_3.jpg" alt="Original oil painting of misty green mountains at dawn">
-        <figcaption>Misty Mountains</figcaption>
-      </figure>
-      <figure data-category="wood">
-        <img src="work_4.jpg" alt="Checkerboard-pattern serving tray in mixed hardwoods">
-        <figcaption>Checkerboard Serving Tray</figcaption>
-      </figure>
-      <figure data-category="wood">
-        <img src="work_5.jpg" alt="Cedar table top with a walnut inlay panel, in progress in the shop">
-        <figcaption>Cedar &amp; Walnut Table</figcaption>
-      </figure>
-      <figure data-category="wood">
-        <img src="work_6.jpg" alt="Cedar outdoor TV cabinet mounted on a covered patio">
-        <figcaption>Outdoor TV Cabinet</figcaption>
-      </figure>
-      <figure data-category="decor">
-        <img src="work_7.jpg" alt="Two handmade wooden crosses in mixed hardwoods">
-        <figcaption>Wooden Crosses</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+  /* ---- Lightbox ---- */
+  var lightbox = document.querySelector('.lightbox');
+  if (lightbox) {
+    var lbImg = lightbox.querySelector('img');
+    var lbCaption = lightbox.querySelector('.lightbox-caption');
+    var closeBtn = lightbox.querySelector('.lightbox-close');
 
-<div class="lightbox">
-  <button class="lightbox-close" aria-label="Close image">&times;</button>
-  <img src="" alt="">
-  <p class="lightbox-caption"></p>
-</div>
+    document.querySelectorAll('.masonry-grid figure, .work-grid a').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var img = el.querySelector('img');
+        if (!img) return;
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        if (lbCaption) lbCaption.textContent = img.alt || '';
+        lightbox.classList.add('open');
+      });
+    });
 
-<section class="cta-banner">
-  <div class="wrap">
-    <div class="cta-banner-text">
-      <div class="heart-badge">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.2C1 10.28 1.6 6.9 4.6 5.36 6.9 4.17 9.6 4.9 12 7.5c2.4-2.6 5.1-3.33 7.4-2.14 3 1.54 3.6 4.92 1.93 7.44C18.7 16.65 12 21 12 21z"/></svg>
-      </div>
-      <div>
-        <h3>See Something You Like?</h3>
-        <p>I can build something similar &mdash; or completely custom.</p>
-      </div>
-    </div>
-    <a href="index.html#contact" class="btn" style="background:var(--dark); color:var(--cream); border-color:var(--dark);">Get In Touch</a>
-  </div>
-</section>
+    function closeLightbox() { lightbox.classList.remove('open'); }
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
 
-{% include footer.html %}
+  /* ---- Contact form -> FormSubmit ---- */
+  // The form's `action` attribute (set on the <form> tag itself) already
+  // points at https://formsubmit.co/<email>. This just submits the same
+  // data via FormSubmit's AJAX endpoint so the page doesn't have to redirect.
+  // NOTE: the first submission after deploying goes to FormSubmit's
+  // "activate your form" step — the inbox owner has to click the
+  // confirmation link they get by email before submissions start
+  // arriving normally.
+  var form = document.querySelector('#contact-form');
+  if (form) {
+    var statusEl = document.querySelector('.form-status');
+    var actionUrl = form.getAttribute('action') || '';
+    var ajaxUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
 
-<script src="script.js"></script>
-</body>
-</html>
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      var formData = new FormData(form);
+      var payload = {};
+      formData.forEach(function (value, key) { payload[key] = value; });
+
+      fetch(ajaxUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Request failed');
+          return res.json();
+        })
+        .then(function () {
+          showStatus(true);
+          form.reset();
+        })
+        .catch(function () {
+          showStatus(false);
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        });
+
+      function showStatus(ok) {
+        if (!statusEl) return;
+        statusEl.classList.remove('ok', 'err');
+        statusEl.classList.add('show', ok ? 'ok' : 'err');
+        statusEl.textContent = ok
+          ? "Thanks — I've got your message and will be in touch soon."
+          : "Something went wrong sending that. Give me a call instead — (817) 401-2226.";
+      }
+    });
+  }
+
+});
