@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---- Contact form -> FormSubmit ---- */
-  // The form's `action` attribute in contact.html already points at
-  // https://formsubmit.co/<email>. This just submits the same data via
-  // FormSubmit's AJAX endpoint so the page doesn't have to redirect.
+  // The form's `action` attribute (set on the <form> tag itself) already
+  // points at https://formsubmit.co/<email>. This just submits the same
+  // data via FormSubmit's AJAX endpoint so the page doesn't have to redirect.
   // NOTE: the first submission after deploying goes to FormSubmit's
   // "activate your form" step — the inbox owner has to click the
   // confirmation link they get by email before submissions start
