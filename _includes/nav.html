@@ -3,5 +3,5 @@
   <a href="about.html"{% if page.nav == "about" %} aria-current="page"{% endif %}>About</a>
   <a href="services.html"{% if page.nav == "services" %} aria-current="page"{% endif %}>Services</a>
   <a href="gallery.html"{% if page.nav == "gallery" %} aria-current="page"{% endif %}>Gallery</a>
-  <a href="contact.html"{% if page.nav == "contact" %} aria-current="page"{% endif %}>Contact</a>
+  <a href="{% if page.nav == 'home' %}#contact{% else %}index.html#contact{% endif %}">Contact</a>
 </nav>
