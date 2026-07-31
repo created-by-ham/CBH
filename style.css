@@ -174,7 +174,13 @@ p.lead {
   flex-shrink: 0;
 }
 
-.brand img { height: 56px; width: 56px; }
+.brand img {
+  height: 56px;
+  width: 56px;
+  background: var(--cream);
+  border-radius: 50%;
+  padding: 4px;
+}
 
 .brand-name {
   font-family: var(--font-body);
@@ -227,14 +233,21 @@ p.lead {
 
 .hero {
   background: var(--cream);
-  padding: 78px 0 90px;
+  overflow: hidden;
 }
 
-.hero .wrap {
+.hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
+  align-items: stretch;
+  min-height: 640px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 90px 40px 90px max(32px, calc((100vw - 1180px) / 2 + 32px));
 }
 
 .hero h1 {
@@ -266,12 +279,17 @@ p.lead {
 
 .hero-media {
   position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-lift);
+  min-height: 340px;
 }
 
-.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.hero-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* ---------- What I Do ---------- */
 
@@ -423,7 +441,7 @@ p.lead {
 }
 
 .footer-brand { display: flex; gap: 14px; align-items: flex-start; }
-.footer-brand img { height: 50px; width: 50px; }
+.footer-brand img { height: 50px; width: 50px; background: var(--cream); border-radius: 50%; padding: 4px; }
 .footer-brand-name { font-weight: 700; color: var(--gold); text-transform: uppercase; font-size: 0.95rem; margin-bottom: 6px; }
 .footer-brand p { color: #C9BEAA; font-size: 0.88rem; }
 
@@ -704,8 +722,9 @@ p.lead {
   .site-header .wrap { position: relative; flex-wrap: wrap; }
   .header-cta { display: none; }
   .nav-toggle { display: block; }
-  .hero .wrap { grid-template-columns: 1fr; }
-  .hero-media { order: -1; }
+  .hero-grid { grid-template-columns: 1fr; min-height: 0; }
+  .hero-media { order: -1; min-height: 320px; }
+  .hero-copy { padding: 50px 24px; }
   .service-grid { grid-template-columns: repeat(2, 1fr); gap: 34px 0; }
   .service-item { border-left: none; padding: 0 10px; }
   .work-grid { grid-template-columns: repeat(3, 1fr); }
