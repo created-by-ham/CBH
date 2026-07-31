@@ -388,6 +388,13 @@ p.lead {
 
 .about-preview p.lead { margin: 18px 0 26px; }
 
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
 .quote-card {
   background: var(--white);
   border: 1px solid var(--border-soft);
@@ -729,6 +736,7 @@ p.lead {
   .service-item { border-left: none; padding: 0 10px; }
   .work-grid { grid-template-columns: repeat(3, 1fr); }
   .about-preview .wrap { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .offer-grid { grid-template-columns: 1fr; }
   .process-strip { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
