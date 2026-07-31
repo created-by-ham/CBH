@@ -177,17 +177,9 @@ p.lead {
 .brand img {
   height: 88px;
   width: 88px;
-  background:
-    repeating-linear-gradient(
-      95deg,
-      #C89B5C 0px, #C89B5C 3px,
-      #B8841F 3px, #B8841F 4px,
-      #D9A441 4px, #D9A441 9px,
-      #A6733A 9px, #A6733A 10px
-    );
+  background: var(--cream);
   border-radius: 50%;
   padding: 5px;
-  box-shadow: inset 0 0 0 1px rgba(28, 23, 18, 0.15);
 }
 
 .brand-name {
@@ -462,17 +454,9 @@ p.lead {
 .footer-brand img {
   height: 50px;
   width: 50px;
-  background:
-    repeating-linear-gradient(
-      95deg,
-      #C89B5C 0px, #C89B5C 3px,
-      #B8841F 3px, #B8841F 4px,
-      #D9A441 4px, #D9A441 9px,
-      #A6733A 9px, #A6733A 10px
-    );
+  background: var(--cream);
   border-radius: 50%;
   padding: 4px;
-  box-shadow: inset 0 0 0 1px rgba(28, 23, 18, 0.15);
 }
 .footer-brand-name { font-weight: 700; color: var(--gold); text-transform: uppercase; font-size: 0.95rem; margin-bottom: 6px; }
 .footer-brand p { color: #C9BEAA; font-size: 0.88rem; }
@@ -512,6 +496,16 @@ p.lead {
 
 .footer-bottom a { color: #8A7C67; text-decoration: underline; }
 .footer-bottom a:hover { color: var(--gold); }
+
+.footer-credit {
+  text-align: center;
+  font-size: 0.76rem;
+  color: #6B6050;
+  margin-top: 8px;
+}
+
+.footer-credit a { color: #6B6050; text-decoration: underline; }
+.footer-credit a:hover { color: var(--gold); }
 
 /* ---------- Page hero (interior pages) ---------- */
 
