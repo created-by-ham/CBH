@@ -62,63 +62,25 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---- Contact form -> FormSubmit ---- */
-  // The form's `action` attribute (set on the <form> tag itself) already
-  // points at https://formsubmit.co/<email>. This just submits the same
-  // data via FormSubmit's AJAX endpoint so the page doesn't have to redirect.
+  // This form submits normally (no AJAX interception): the browser posts
+  // directly to FormSubmit via the form's own action/method attributes,
+  // and FormSubmit redirects to the URL in the hidden _next field
+  // (thank-you.html) once it's processed. All this JS does is show a
+  // brief "Sending..." state on the button so there's feedback before
+  // the redirect happens.
   // NOTE: the first submission after deploying goes to FormSubmit's
   // "activate your form" step — the inbox owner has to click the
   // confirmation link they get by email before submissions start
-  // arriving normally.
+  // arriving normally, and before the thank-you redirect will fire.
   var form = document.querySelector('#contact-form');
   if (form) {
-    var statusEl = document.querySelector('.form-status');
-    var actionUrl = form.getAttribute('action') || '';
-    var ajaxUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
+    form.addEventListener('submit', function () {
       var submitBtn = form.querySelector('button[type="submit"]');
-      var originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      var formData = new FormData(form);
-      var payload = {};
-      formData.forEach(function (value, key) { payload[key] = value; });
-
-      fetch(ajaxUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error('Request failed');
-          return res.json();
-        })
-        .then(function () {
-          showStatus(true);
-          form.reset();
-        })
-        .catch(function () {
-          showStatus(false);
-        })
-        .finally(function () {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-        });
-
-      function showStatus(ok) {
-        if (!statusEl) return;
-        statusEl.classList.remove('ok', 'err');
-        statusEl.classList.add('show', ok ? 'ok' : 'err');
-        statusEl.textContent = ok
-          ? "Thanks — I've got your message and will be in touch soon."
-          : "Something went wrong sending that. Give me a call instead — (817) 401-2226.";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
       }
+      // No preventDefault — let the browser submit and follow FormSubmit's redirect.
     });
   }
 
